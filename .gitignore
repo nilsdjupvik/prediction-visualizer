@@ -1,0 +1,10 @@
+node_modules/
+.svelte-kit/
+build/
+.yarn/
+.yarnrc.yml
+yarn.lock
+pnpm-lock.yaml
+.DS_Store
+*.log
+.beads/
