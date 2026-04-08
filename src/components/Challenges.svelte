@@ -47,45 +47,50 @@
 	let expandedIndex = $state<number | null>(null);
 </script>
 
-<div
-	class="mb-6 rounded-xl border p-4"
-	style="background: var(--pv-surface); border-color: var(--pv-border)"
->
-	<h3 class="mb-3 text-sm font-semibold" style="color: var(--pv-text-secondary)">
-		&#x1F3C6; Challenges — Can you control the AI?
+<div class="mb-8">
+	<h3 class="mb-4 text-sm font-bold" style="color: var(--pv-text-primary); font-family: var(--pv-font-display)">
+		Challenges — Can you control the AI?
 	</h3>
 
-	<div class="grid gap-2 sm:grid-cols-2">
+	<div class="grid gap-3 sm:grid-cols-2">
 		{#each challenges as challenge, i}
-			<div
-				class="cursor-pointer rounded-lg border p-3 text-left transition-all hover:scale-[1.01]"
-				style="border-color: {expandedIndex === i ? challenge.color : 'var(--pv-border)'}; background: {expandedIndex === i ? `color-mix(in srgb, ${challenge.color} 8%, var(--pv-bg))` : 'var(--pv-bg)'}"
-				role="button"
-				tabindex="0"
+			<button
+				class="rounded-xl p-4 text-left transition-all"
+				style="
+					background: {expandedIndex === i ? `color-mix(in srgb, ${challenge.color} 8%, var(--pv-surface))` : 'var(--pv-surface)'};
+					border-left: 3px solid {expandedIndex === i ? challenge.color : 'transparent'};
+					transition-timing-function: var(--pv-ease-out);
+					transition-duration: var(--pv-duration-normal);
+				"
 				onclick={() => (expandedIndex = expandedIndex === i ? null : i)}
-				onkeydown={(e: KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); expandedIndex = expandedIndex === i ? null : i; } }}
+				aria-expanded={expandedIndex === i}
 			>
 				<div class="flex items-center gap-2">
 					<span class="text-lg">{@html challenge.icon}</span>
-					<span class="text-sm font-medium" style="color: var(--pv-text-primary)">{challenge.title}</span>
+					<span class="text-sm font-semibold" style="color: var(--pv-text-primary); font-family: var(--pv-font-display)">{challenge.title}</span>
 				</div>
-				<p class="mt-1 text-xs" style="color: var(--pv-text-muted)">{challenge.description}</p>
+				<p class="mt-1.5 text-xs leading-relaxed" style="color: var(--pv-text-muted)">{challenge.description}</p>
 
 				{#if expandedIndex === i}
-					<div class="mt-2 space-y-2">
+					<div class="mt-3 space-y-2">
 						<p class="text-[10px] italic" style="color: var(--pv-text-secondary)">
 							Hint: {challenge.hint}
 						</p>
 						<button
-							class="w-full rounded-md px-3 py-1.5 text-xs font-medium text-white"
-							style="background: {challenge.color}"
+							class="w-full min-h-[40px] rounded-lg px-3 py-2 text-xs font-semibold transition-all"
+							style="
+								background: {challenge.color};
+								color: var(--pv-bg);
+								font-family: var(--pv-font-display);
+								transition-timing-function: var(--pv-ease-out);
+							"
 							onclick={(e: MouseEvent) => { e.stopPropagation(); onStartChallenge(challenge.suggestedPrompt, challenge.temperature); }}
 						>
 							Try it! ({challenge.suggestedPrompt})
 						</button>
 					</div>
 				{/if}
-			</div>
+			</button>
 		{/each}
 	</div>
 </div>

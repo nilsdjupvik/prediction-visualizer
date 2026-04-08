@@ -56,13 +56,13 @@
 
 {#if !dismissed}
 	<div class="mt-4 flex flex-wrap gap-2" transition:fly={{ y: 20, duration: 200 }}>
-		<span class="self-center text-xs font-medium" style="color: var(--pv-text-muted)">
+		<span class="self-center text-xs font-semibold" style="color: var(--pv-text-muted); font-family: var(--pv-font-display)">
 			Try this:
 		</span>
 		{#each experiments as exp}
 			<button
-				class="flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-all hover:scale-105"
-				style="border-color: var(--pv-border); background: var(--pv-surface); color: var(--pv-text-primary)"
+				class="flex min-h-[36px] items-center gap-1.5 rounded-full border px-4 py-1.5 text-xs font-medium transition-all"
+				style="border-color: var(--pv-border); background: var(--pv-surface); color: var(--pv-text-primary); transition-timing-function: var(--pv-ease-out);"
 				onclick={exp.action}
 				title={exp.description}
 			>

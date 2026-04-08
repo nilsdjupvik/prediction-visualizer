@@ -28,15 +28,16 @@
 
 <span class="relative inline-flex items-center">
 	<button
-		class="inline-flex items-center rounded-md px-1.5 py-0.5 font-mono text-sm transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-1"
+		class="inline-flex min-h-[32px] items-center rounded-md px-2 py-1 font-mono text-sm transition-all focus-visible:ring-2 focus-visible:ring-offset-1"
 		style="
 			background: {event.isThinking
-				? 'color-mix(in srgb, var(--pv-accent) 10%, var(--pv-bg))'
-				: `color-mix(in srgb, ${color} 25%, var(--pv-bg))`};
-			border: 1.5px solid {selected ? 'var(--pv-chosen-ring)' : color};
+				? 'var(--pv-accent-subtle)'
+				: `color-mix(in srgb, ${color} 20%, var(--pv-bg))`};
+			border: 1.5px solid {selected ? 'var(--pv-chosen-ring)' : `color-mix(in srgb, ${color} 50%, transparent)`};
 			color: {event.isThinking ? 'var(--pv-text-secondary)' : 'var(--pv-text-primary)'};
 			font-style: {event.isThinking ? 'italic' : 'normal'};
-			focus-ring-color: var(--pv-accent);
+			transition-timing-function: var(--pv-ease-out);
+			transition-duration: var(--pv-duration-fast);
 		"
 		title={event.isThinking
 			? `Thinking: ${formatProbability(prob)}`
@@ -47,12 +48,12 @@
 		{onclick}
 		onmouseenter={() => (hovered = true)}
 		onmouseleave={() => (hovered = false)}
-		transition:fly={{ y: 8, duration: 200 }}
+		transition:fly={{ y: 6, duration: 180 }}
 	>
 		<span class="whitespace-pre">{event.chosen.token}</span>
 		{#if level !== 'kids'}
 			<span
-				class="ml-1 text-[10px]"
+				class="tabular-nums ml-1 text-[10px]"
 				style="color: {color}"
 			>
 				{formatProbability(prob)}
@@ -65,17 +66,17 @@
 	<!-- Ghost chip: runner-up on hover -->
 	{#if hovered && runnerUp && !event.isThinking}
 		<span
-			class="pointer-events-none absolute top-full left-0 z-10 mt-0.5 inline-flex items-center whitespace-nowrap rounded-md px-1.5 py-0.5 font-mono text-xs"
+			class="pointer-events-none absolute top-full left-0 z-10 mt-1 inline-flex items-center whitespace-nowrap rounded-md px-2 py-1 font-mono text-xs"
 			style="
 				border: 1.5px dashed {probabilityColor(runnerUp.probability)};
 				color: var(--pv-text-muted);
-				background: color-mix(in srgb, var(--pv-surface) 90%, transparent);
+				background: var(--pv-surface);
 			"
 			aria-hidden="true"
 		>
 			or {runnerUp.token.trim() || '(space)'}
 			{#if level !== 'kids'}
-				<span class="ml-1 text-[9px]" style="color: var(--pv-text-muted)">{formatProbability(runnerUp.probability)}</span>
+				<span class="tabular-nums ml-1 text-[9px]" style="color: var(--pv-text-muted)">{formatProbability(runnerUp.probability)}</span>
 			{/if}
 		</span>
 	{/if}

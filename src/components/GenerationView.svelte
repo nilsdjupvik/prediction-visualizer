@@ -56,25 +56,33 @@
 	let showFormatted = $state(false);
 </script>
 
-<div class="mt-6 grid gap-4 lg:grid-cols-[1fr_320px]">
+<div class="mt-8 grid gap-6 lg:grid-cols-[1fr_340px]">
 	<!-- Left: Token stream + formatted output -->
 	<div>
 		<!-- Tab switcher -->
-		<div class="mb-2 flex gap-1 rounded-lg p-1" style="background: var(--pv-surface)">
+		<div class="mb-3 flex gap-1 rounded-lg p-1" style="background: var(--pv-surface)">
 			<button
-				class="rounded-md px-3 py-1.5 text-sm font-medium transition-colors"
-				style={!showFormatted
-					? 'background: var(--pv-accent); color: white;'
-					: 'color: var(--pv-text-secondary);'}
+				class="min-h-[40px] rounded-md px-4 py-2 text-sm font-semibold transition-all"
+				style="
+					font-family: var(--pv-font-display);
+					{!showFormatted
+						? 'background: var(--pv-accent); color: var(--pv-bg);'
+						: 'color: var(--pv-text-secondary);'}
+					transition-timing-function: var(--pv-ease-out);
+				"
 				onclick={() => (showFormatted = false)}
 			>
 				Token View
 			</button>
 			<button
-				class="rounded-md px-3 py-1.5 text-sm font-medium transition-colors"
-				style={showFormatted
-					? 'background: var(--pv-accent); color: white;'
-					: 'color: var(--pv-text-secondary);'}
+				class="min-h-[40px] rounded-md px-4 py-2 text-sm font-semibold transition-all"
+				style="
+					font-family: var(--pv-font-display);
+					{showFormatted
+						? 'background: var(--pv-accent); color: var(--pv-bg);'
+						: 'color: var(--pv-text-secondary);'}
+					transition-timing-function: var(--pv-ease-out);
+				"
 				onclick={() => (showFormatted = true)}
 			>
 				Formatted Text
@@ -103,7 +111,7 @@
 		{/if}
 
 		<!-- Status / stats -->
-		<div class="mt-2 flex items-center gap-3">
+		<div class="mt-3 flex items-center gap-3">
 			{#if session.status === 'generating'}
 				<div class="flex items-center gap-2">
 					<div class="h-2 w-2 animate-pulse rounded-full" style="background: var(--pv-accent)"></div>
@@ -140,8 +148,8 @@
 				/>
 				{#if level !== 'kids'}
 					<button
-						class="mt-4 flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-all hover:scale-105"
-						style="border-color: var(--pv-border); background: var(--pv-surface); color: var(--pv-text-primary)"
+						class="mt-4 flex min-h-[36px] items-center gap-1.5 rounded-full border px-4 py-1.5 text-xs font-medium transition-all"
+						style="border-color: var(--pv-border); background: var(--pv-surface); color: var(--pv-text-primary); transition-timing-function: var(--pv-ease-out);"
 						onclick={onCompare}
 						title="Run the same prompt again and compare the two outputs side by side"
 					>
@@ -220,10 +228,10 @@
 		<!-- Game complete summary -->
 		{#if session.gameMode && session.status === 'complete' && session.pendingTokens.length === 0 && session.tokens.length > 0}
 			<div
-				class="mt-3 rounded-xl border p-4 text-center"
+				class="mt-4 rounded-xl border-l-4 p-5 text-center"
 				style="background: var(--pv-surface); border-color: var(--pv-success)"
 			>
-				<p class="text-lg font-bold" style="color: var(--pv-success)">&#x1F389; Game Over!</p>
+				<p class="text-lg font-bold" style="color: var(--pv-success); font-family: var(--pv-font-display)">&#x1F389; Game Over!</p>
 				<p class="mt-1 text-sm" style="color: var(--pv-text-secondary)">
 					Score: <strong>{gameScore}</strong> points
 				</p>

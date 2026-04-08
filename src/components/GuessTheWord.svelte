@@ -84,12 +84,12 @@
 </script>
 
 <div
-	class="rounded-xl border p-4"
+	class="rounded-xl border-l-4 p-5"
 	style="background: var(--pv-surface); border-color: var(--pv-accent)"
 	transition:fly={{ y: 10, duration: 200 }}
 >
 	<!-- Score bar -->
-	<div class="mb-3 flex items-center justify-between text-xs" style="color: var(--pv-text-muted)">
+	<div class="mb-3 flex items-center justify-between text-xs font-medium" style="color: var(--pv-text-muted)">
 		<span>
 			{#if streak > 0}
 				&#x1F525; Streak: {streak}
@@ -112,7 +112,7 @@
 		</div>
 	{:else}
 		<!-- Guess prompt -->
-		<p class="mb-3 text-center text-sm font-medium" style="color: var(--pv-text-primary)">
+		<p class="mb-3 text-center text-sm font-bold" style="color: var(--pv-text-primary); font-family: var(--pv-font-display)">
 			What word comes next?
 		</p>
 
@@ -120,8 +120,8 @@
 		<div class="mb-3 grid grid-cols-2 gap-2">
 			{#each choices() as choice}
 				<button
-					class="rounded-lg border px-3 py-2 text-sm font-mono transition-colors hover:opacity-80"
-					style="border-color: var(--pv-border); background: var(--pv-bg); color: var(--pv-text-primary)"
+					class="min-h-[44px] rounded-lg border px-3 py-2 text-sm font-mono transition-all"
+					style="border-color: var(--pv-border); background: var(--pv-bg); color: var(--pv-text-primary); transition-timing-function: var(--pv-ease-out);"
 					onclick={() => handleChoice(choice)}
 				>
 					{choice || '(space)'}

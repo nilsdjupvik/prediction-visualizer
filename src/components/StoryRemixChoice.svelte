@@ -19,12 +19,12 @@
 </script>
 
 <div
-	class="rounded-xl border p-4"
+	class="rounded-xl border-l-4 p-5"
 	style="background: var(--pv-surface); border-color: var(--pv-chosen-ring)"
 	transition:fly={{ y: 10, duration: 200 }}
 >
 	<div class="mb-1 flex items-center justify-between">
-		<h3 class="text-sm font-bold" style="color: var(--pv-chosen-ring)">
+		<h3 class="text-sm font-bold" style="color: var(--pv-chosen-ring); font-family: var(--pv-font-display)">
 			&#x1F500; Your turn!
 		</h3>
 		<span class="text-[10px]" style="color: var(--pv-text-muted)">
@@ -39,7 +39,7 @@
 		{#each topChoices as alt, i}
 			{@const color = probabilityColor(alt.probability)}
 			<button
-				class="flex w-full items-center gap-3 rounded-lg border p-2.5 text-left transition-all hover:scale-[1.02]"
+				class="flex w-full min-h-[48px] items-center gap-3 rounded-lg border p-3 text-left transition-all"
 				style="border-color: {color}; background: color-mix(in srgb, {color} 10%, var(--pv-bg))"
 				onclick={() => onChoose(i)}
 			>
@@ -62,7 +62,7 @@
 	</div>
 
 	<button
-		class="mt-3 w-full rounded-lg px-3 py-1.5 text-xs transition-colors"
+		class="mt-3 w-full min-h-[40px] rounded-lg px-3 py-2 text-xs transition-all"
 		style="color: var(--pv-text-muted); background: var(--pv-bg)"
 		onclick={onLetAIPick}
 	>

@@ -31,7 +31,7 @@
 	style="background: var(--pv-surface); border-color: var(--pv-border)"
 	transition:fly={{ y: 10, duration: 200 }}
 >
-	<h3 class="mb-2 text-sm font-semibold" style="color: var(--pv-text-secondary)">
+	<h3 class="mb-2 text-sm font-bold" style="color: var(--pv-text-primary); font-family: var(--pv-font-display)">
 		&#x1F500; Run Comparison
 	</h3>
 	<p class="mb-3 text-xs" style="color: var(--pv-text-muted)">

@@ -60,7 +60,7 @@
 	style="background: var(--pv-surface); border-color: var(--pv-border)"
 	transition:slide={{ duration: 200 }}
 >
-	<h3 class="mb-1 text-sm font-semibold" style="color: var(--pv-text-secondary)">
+	<h3 class="mb-1 text-sm font-semibold" style="color: var(--pv-text-primary); font-family: var(--pv-font-display)">
 		{level === 'kids' ? 'What the AI was thinking...' : 'Token alternatives'}
 	</h3>
 	<p class="mb-3 text-xs" style="color: var(--pv-text-muted)">
@@ -119,7 +119,7 @@
 
 				<!-- Probability -->
 				{#if level !== 'kids'}
-					<span class="w-12 text-right font-mono text-[10px]" style="color: var(--pv-text-muted)">
+					<span class="tabular-nums w-12 text-right font-mono text-[10px]" style="color: var(--pv-text-muted)">
 						{formatProbability(adjProb)}
 					</span>
 				{/if}
@@ -128,7 +128,7 @@
 				{#if showComparison && level !== 'kids'}
 					{@const delta = adjProb - origProb}
 					<span
-						class="w-10 text-right font-mono text-[9px]"
+						class="tabular-nums w-10 text-right font-mono text-[9px]"
 						style="color: {delta > 0 ? 'var(--pv-success)' : delta < 0 ? 'var(--pv-prob-low)' : 'var(--pv-text-muted)'}"
 					>
 						{delta > 0 ? '+' : ''}{(delta * 100).toFixed(1)}
@@ -137,7 +137,7 @@
 
 				<!-- Logprob (advanced only) -->
 				{#if level === 'advanced' && !showComparison}
-					<span class="w-16 text-right font-mono text-[10px]" style="color: var(--pv-text-muted)">
+					<span class="tabular-nums w-16 text-right font-mono text-[10px]" style="color: var(--pv-text-muted)">
 						{alt.logprob.toFixed(3)}
 					</span>
 				{/if}
